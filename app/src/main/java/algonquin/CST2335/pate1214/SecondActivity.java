@@ -1,4 +1,5 @@
 package algonquin.CST2335.pate1214;
+
 import androidx.activity.result.ActivityResult;
 import androidx.activity.result.ActivityResultCallback;
 
@@ -9,6 +10,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.app.Activity;
 import android.content.Intent;
 import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.net.Uri;
 import android.os.Bundle;
 import android.provider.MediaStore;
@@ -18,6 +20,9 @@ import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
+
+import java.io.File;
+import java.io.FileOutputStream;
 
 public class SecondActivity extends AppCompatActivity {
 
@@ -40,6 +45,12 @@ public class SecondActivity extends AppCompatActivity {
 
 
         profileImage = findViewById(R.id.cameraImageView); // Ensure this ID matches your layout
+        File file = new File(getFilesDir(), "Picture.png");
+        if (file.exists()) {
+            Bitmap theImage = BitmapFactory.decodeFile(file.getAbsolutePath());
+            profileImage.setImageBitmap(theImage);
+        }
+
         Button changePictureButton = findViewById(R.id.changePictureButton); // Ensure this ID matches your layout
         Button callButton = findViewById(R.id.callButton); // Ensure this ID matches your layout
 
@@ -80,6 +91,15 @@ public class SecondActivity extends AppCompatActivity {
                             Bitmap thumbnail = data.getParcelableExtra("data");
                             if (thumbnail != null) {
                                 profileImage.setImageBitmap(thumbnail);
+                                FileOutputStream fOut = null;
+                                try {
+                                    fOut = openFileOutput("Picture.png", MODE_PRIVATE);
+                                    thumbnail.compress(Bitmap.CompressFormat.PNG, 100, fOut);
+                                    fOut.flush();
+                                    fOut.close();
+                                } catch (Exception e) {
+                                    e.printStackTrace();
+                                }
                             }
                         }
                     }

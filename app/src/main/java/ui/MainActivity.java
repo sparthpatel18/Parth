@@ -1,105 +1,108 @@
 package ui;
+import android.os.Bundle;
+import android.widget.Button;
+import android.widget.EditText;
+import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 
-import android.content.Intent;
-import android.os.Bundle;
-import android.view.View;
-import android.widget.Button;
-import android.widget.CheckBox;
-import android.widget.CompoundButton;
-import android.widget.EditText;
-import android.widget.ImageButton;
-import android.widget.ImageView;
-import android.widget.RadioButton;
-import android.widget.Switch;
-import android.widget.TextView;
-import android.widget.Toast;
-import android.util.Log;
-
 import algonquin.CST2335.pate1214.R;
-import algonquin.CST2335.pate1214.SecondActivity;
-import algonquin.CST2335.pate1214.databinding.ActivityMainBinding;
-import data.MainViewModel;
-import androidx.lifecycle.ViewModelProvider;
 
 public class MainActivity extends AppCompatActivity {
-    private TextView mytext;
-    private Button mybutton;
-    private EditText myedittext;
-    private CheckBox checkBox;
-    private Switch switchButton;
-    private RadioButton radioButton;
-    private ActivityMainBinding variableBinding;
-    private MainViewModel model;
-    private ImageView myImageView;
-    private ImageButton myImageButton;
-    private static String TAG = "MainActivity";
+
+    // Declare class variables
+    private EditText passwordEditText;
+    private Button loginButton;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
-        Log.w( "MainActivity", "In onCreate() - Loading Widgets" );
-
-
-
         super.onCreate(savedInstanceState);
-        model = new ViewModelProvider(this).get(MainViewModel.class);
         setContentView(R.layout.activity_main);
-        variableBinding = ActivityMainBinding.inflate(getLayoutInflater());
-        setContentView(variableBinding.getRoot());
-        Button loginButton = findViewById(R.id.loginButton);
 
-        // Set an OnClickListener on the login button
+        // Load views using findViewById
+        passwordEditText = findViewById(R.id.passwordEditText);
+        loginButton = findViewById(R.id.loginButton);
 
-        final EditText emailEditText = findViewById(R.id.emailEditText);
-        loginButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                // Create an Intent to start SecondActivity
-                Intent nextPageIntent = new Intent(MainActivity.this, SecondActivity.class);
+        // Add OnClickListener to the loginButton
+        loginButton.setOnClickListener(view -> {
+            // Read password string from EditText
+            String password = passwordEditText.getText().toString();
 
-                // Attach the email address to the Intent
-                nextPageIntent.putExtra("EmailAddress", emailEditText.getText().toString());
+            // Check password complexity
+            boolean isComplex = checkPasswordComplexity(password);
 
-                // Start the activity using the intent
-                startActivity(nextPageIntent);
-
+            // Update TextView based on password complexity result
+            if (isComplex) {
+                Toast.makeText(MainActivity.this, "Your password meets the requirements", Toast.LENGTH_SHORT).show();
+            } else {
+                Toast.makeText(MainActivity.this, "You shall not pass!", Toast.LENGTH_SHORT).show();
             }
         });
-
     }
 
-    @Override
+    /**
+     * Check if the password meets complexity requirements.
+     *
+     * @param password The password string to be checked.
+     * @return True if the password meets complexity requirements, false otherwise.
+     */
+    private boolean checkPasswordComplexity(String password) {
+        boolean foundUpperCase = false;
+        boolean foundLowerCase = false;
+        boolean foundNumber = false;
+        boolean foundSpecial = false;
 
-    protected void onResume() {
+        // Iterate over each character in the password string
+        for (char c : password.toCharArray()) {
+            if (Character.isUpperCase(c)) {
+                foundUpperCase = true;
+            } else if (Character.isLowerCase(c)) {
+                foundLowerCase = true;
+            } else if (Character.isDigit(c)) {
+                foundNumber = true;
+            } else if (isSpecialCharacter(c)) {
+                foundSpecial = true;
+            }
+        }
 
-        super.onResume();
-        Log.w(TAG, "The activity has become visible (it is now \"resumed\"). This is where you start animations, acquire exclusive resources, etc.");
+        // Check if any of the requirements are missing and display Toast messages
+        if (!foundUpperCase) {
+            Toast.makeText(this, "Your password does not have an upper case letter", Toast.LENGTH_SHORT).show();
+            return false;
+        } else if (!foundLowerCase) {
+            Toast.makeText(this, "Your password does not have a lower case letter", Toast.LENGTH_SHORT).show();
+            return false;
+        } else if (!foundNumber) {
+            Toast.makeText(this, "Your password does not have a number", Toast.LENGTH_SHORT).show();
+            return false;
+        } else if (!foundSpecial) {
+            Toast.makeText(this, "Your password does not have a special symbol", Toast.LENGTH_SHORT).show();
+            return false;
+        } else {
+            return true; // Password meets complexity requirements
+        }
     }
 
-    @Override
-    protected void onStart() {
-        Log.w(TAG, "The activity is about to become visible. This is a good place to check resources the activity needs.");
-        super.onStart();
-    }
-
-    @Override
-    protected void onPause() {
-        Log.w(TAG, "Another activity is taking focus (this activity is about to be \"paused\"). This is where you should stop animations, release exclusive resources, etc.");
-        super.onPause();
-    }
-
-    @Override
-    protected void onDestroy() {
-        Log.w(TAG, "The activity is about to be destroyed. This is the final call where you can clean up resources, including thread, listeners, and receivers.");
-        super.onDestroy();
-    }
-
-    @Override
-    protected void onStop() {
-        Log.w(TAG, "The activity is no longer visible (it is now \"stopped\"). This is where you should release resources that might leak memory.");
-        super.onStop();
-
-
+    /**
+     * Check if the character is a special character.
+     *
+     * @param c The character to be checked.
+     * @return True if the character is a special character, false otherwise.
+     */
+    private boolean isSpecialCharacter(char c) {
+        switch (c) {
+            case '#':
+            case '$':
+            case '%':
+            case '^':
+            case '&':
+            case '*':
+            case '!':
+            case '@':
+            case '?':
+                return true;
+            default:
+                return false;
+        }
     }
 }
