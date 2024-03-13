@@ -44,15 +44,15 @@ public class MainActivityTest {
         // Added a sleep statement to match the app's execution delay.
         // The recommended way to handle such scenarios is to use Espresso idling resources:
 
-        ViewInteraction appCompatEditText = onView(withId(androidx.core.R.id.text) );
 
-        appCompatEditText.perform(replaceText("12345"),closeSoftKeyboard());
+        ViewInteraction appCompatEditText = onView(withId(R.id.passwordEditText) );
+        appCompatEditText.perform(replaceText("12345"));
 
 
-        ViewInteraction materialButton = onView(withId(R.id.loginButton) );
+        ViewInteraction materialButton = onView(withId(R.id.loginButton ));
         materialButton.perform(click());
 
-        ViewInteraction textView = onView(withId(R.id.passwordEditText) );
+        ViewInteraction textView = onView(withId(R.id.passwordTextView) );
         textView.check(matches(withText("You shall not pass!")));
 
 
@@ -64,7 +64,7 @@ public class MainActivityTest {
         // The recommended way to handle such scenarios is to use Espresso idling resources:
 
         ViewInteraction appCompatEditText = onView(withId(R.id.passwordEditText) );
-        appCompatEditText.perform(replaceText("password123#$*"));
+        appCompatEditText.perform(replaceText("password23#$*"));
 
 
         ViewInteraction materialButton = onView(withId(R.id.loginButton ));

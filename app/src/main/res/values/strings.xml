@@ -10,5 +10,5 @@
     <string name="button2">I am Button</string>
     <string name="button3">I am Button</string>
     <string name="spinmessage">spinflag</string>
-
+    <string name="login_message">sign up</string>
 </resources>

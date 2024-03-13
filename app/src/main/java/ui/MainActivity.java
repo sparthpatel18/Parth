@@ -2,6 +2,7 @@ package ui;
 import android.os.Bundle;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
@@ -14,6 +15,8 @@ public class MainActivity extends AppCompatActivity {
     private EditText passwordEditText;
     private Button loginButton;
 
+    private TextView passwordTextV;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -22,6 +25,7 @@ public class MainActivity extends AppCompatActivity {
         // Load views using findViewById
         passwordEditText = findViewById(R.id.passwordEditText);
         loginButton = findViewById(R.id.loginButton);
+        passwordTextV = findViewById(R.id.passwordTextView);
 
         // Add OnClickListener to the loginButton
         loginButton.setOnClickListener(view -> {
@@ -34,8 +38,10 @@ public class MainActivity extends AppCompatActivity {
             // Update TextView based on password complexity result
             if (isComplex) {
                 Toast.makeText(MainActivity.this, "Your password meets the requirements", Toast.LENGTH_SHORT).show();
+                passwordTextV.setText("Your password meets the requirements");
             } else {
                 Toast.makeText(MainActivity.this, "You shall not pass!", Toast.LENGTH_SHORT).show();
+                passwordTextV.setText("You shall not pass!");
             }
         });
     }
