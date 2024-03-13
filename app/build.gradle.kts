@@ -3,6 +3,10 @@ plugins {
 }
 
 android {
+
+        buildFeatures {
+            viewBinding = true
+        }
     namespace = "algonquin.CST2335.pate1214"
     compileSdk = 34
 

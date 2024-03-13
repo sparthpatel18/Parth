@@ -1,5 +1,14 @@
 <resources>
-    <string name="app_name">algonquin.CST2335pate1214</string>
-    <string name="hello_message" translatable="false">Hello World!</string>
-    <string name="button_message" translatable="false">I am button</string>
+    <string name="app_name">Parth`s android lab</string>
+    <string name="hello_message">Hello World!</string>
+    <string name="button_message">I am Button</string>
+    <string name="editmessage">I am an EditText</string>
+    <string name="hinttext">Write something here</string>
+    <string name="checkbox">Do you drink coffee?</string>
+    <string name="radiobutton">Do you drink coffee?</string>
+    <string name="switch1">Do you drink coffee?</string>
+    <string name="button2">I am Button</string>
+    <string name="button3">I am Button</string>
+    <string name="spinmessage">spinflag</string>
+    <string name="login_message">sign up</string>
 </resources>
