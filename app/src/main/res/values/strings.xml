@@ -2,4 +2,6 @@
     <string name="app_name">algonquin.CST2335pate1214</string>
     <string name="hello_message" translatable="false">Hello World!</string>
     <string name="button_message" translatable="false">I am button</string>
+    <string name="artistName" translatable="false">I am button</string>
+
 </resources>
