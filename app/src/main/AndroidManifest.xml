@@ -2,6 +2,12 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools">
 
+    <!-- Required permission to access the internet -->
+    <uses-permission android:name="android.permission.INTERNET" />
+
+    <!-- Required permission to check network state -->
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
+
     <application
         android:allowBackup="true"
         android:dataExtractionRules="@xml/data_extraction_rules"
@@ -12,14 +18,20 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.ParthsAndroid"
         tools:targetApi="31">
+
+        <!-- DeezerSongSearch Activity -->
         <activity
             android:name=".DeezerSongSearch"
-            android:exported="true" />
-        <activity
-            android:name=".SongDetailsActivity"
-            android:exported="true" />
+            android:exported="true">
 
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+
+        <!-- SongDetailsActivity -->
+        <activity android:name=".SongDetailsActivity" />
 
     </application>
-
 </manifest>

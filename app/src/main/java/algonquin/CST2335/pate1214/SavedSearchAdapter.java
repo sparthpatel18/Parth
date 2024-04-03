@@ -8,11 +8,11 @@ import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 import java.util.List;
 
-class SavedSearchesAdapter extends RecyclerView.Adapter<SavedSearchesAdapter.SearchEntryViewHolder> {
+public class SavedSearchAdapter extends RecyclerView.Adapter<SavedSearchAdapter.SearchEntryViewHolder> {
     private List<SearchEntry> searchEntries;
     private LayoutInflater mInflater;
 
-    public SavedSearchesAdapter(Context context, List<SearchEntry> searchEntries) {
+    public SavedSearchAdapter(Context context, List<SearchEntry> searchEntries) {
         this.mInflater = LayoutInflater.from(context);
         this.searchEntries = searchEntries;
     }
