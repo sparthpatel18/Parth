@@ -15,7 +15,9 @@
         <activity
             android:name=".DeezerSongSearch"
             android:exported="true" />
-
+        <activity
+            android:name=".SongDetailsActivity"
+            android:exported="true" />
 
 
     </application>
