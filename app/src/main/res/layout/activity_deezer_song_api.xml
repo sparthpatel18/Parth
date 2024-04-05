@@ -1,35 +1,64 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    xmlns:tools="http://schemas.android.com/tools"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:orientation="vertical">
+    android:orientation="vertical"
+    android:padding="16dp">
 
+    <!-- Toolbar layout -->
+    <androidx.appcompat.widget.Toolbar
+        android:id="@+id/toolbar"
+        android:layout_width="match_parent"
+        android:layout_height="?attr/actionBarSize"
+        android:background="?attr/colorPrimary"
+        android:theme="@style/ThemeOverlay.AppCompat.Dark.ActionBar"/>
+
+    <!-- Search input field positioned below the Toolbar -->
     <EditText
         android:id="@+id/searchEditText"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:hint="search" />
+        android:hint="Search here..."/>
 
+
+    <!-- Search button -->
     <Button
         android:id="@+id/searchButton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/search_button_label"
+        android:layout_marginStart="8dp"/>
+
+    <!-- Help and Clear buttons in a horizontal layout for better space utilization -->
+    <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:insetLeft="100dp"
-        android:insetRight="100dp"
-        android:text="Search" />
+        android:orientation="horizontal"
+        android:layout_marginTop="20dp"
+        android:gravity="end">
 
+        <!-- Help button -->
+        <Button
+            android:id="@+id/helpButton"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/help_button_label"
+            android:layout_marginEnd="8dp"/>
+
+        <!-- Clear button -->
+        <Button
+            android:id="@+id/clearButton"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/clear_button_label"/>
+
+    </LinearLayout>
+
+    <!-- RecyclerView for displaying artist list -->
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/artistsRecyclerView"
         android:layout_width="match_parent"
-        tools:listitem="@layout/artist_item"
-        android:layout_height="wrap_content" />
-    <ImageView
-        android:id="@+id/artistImageView"
-        android:layout_width="100dp"
-        android:layout_height="100dp"
-        android:layout_marginStart="8dp"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        android:scaleType="centerCrop"/>
+        android:layout_height="0dp"
+        android:layout_weight="1"
+        android:layout_marginTop="20dp"/>
+
 </LinearLayout>

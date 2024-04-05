@@ -1,8 +1,15 @@
 package algonquin.CST2335.pate1214;
+
 import androidx.room.ColumnInfo;
 import androidx.room.Entity;
 import androidx.room.PrimaryKey;
 
+/**
+ * Entity class representing a search entry in the database.
+ * Author: Parth Patel
+ * Lab Section: 012
+ * Date: 3 April 2024
+ */
 @Entity(tableName = "search_entries")
 public class SearchEntry {
     @PrimaryKey(autoGenerate = true)

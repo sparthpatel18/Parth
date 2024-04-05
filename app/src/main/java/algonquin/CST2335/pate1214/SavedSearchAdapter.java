@@ -1,17 +1,31 @@
 package algonquin.CST2335.pate1214;
+
 import android.content.Context;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
+
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
+
 import java.util.List;
 
+/**
+ * Adapter class for the RecyclerView to display saved search entries.
+ * Author: Parth Patel
+ * Lab Section: 012
+ * Date: 3 April 2024
+ */
 public class SavedSearchAdapter extends RecyclerView.Adapter<SavedSearchAdapter.SearchEntryViewHolder> {
     private List<SearchEntry> searchEntries;
     private LayoutInflater mInflater;
 
+    /**
+     * Constructor for the SavedSearchAdapter.
+     * @param context The context of the activity or fragment.
+     * @param searchEntries The list of search entries to be displayed.
+     */
     public SavedSearchAdapter(Context context, List<SearchEntry> searchEntries) {
         this.mInflater = LayoutInflater.from(context);
         this.searchEntries = searchEntries;
@@ -26,6 +40,7 @@ public class SavedSearchAdapter extends RecyclerView.Adapter<SavedSearchAdapter.
 
     @Override
     public void onBindViewHolder(@NonNull SearchEntryViewHolder holder, int position) {
+        // Bind data to the views in each ViewHolder
         holder.searchTermTextView.setText(searchEntries.get(position).searchTerm);
         // You can also set onClickListener here if you want to add interaction
     }
@@ -35,6 +50,9 @@ public class SavedSearchAdapter extends RecyclerView.Adapter<SavedSearchAdapter.
         return searchEntries.size();
     }
 
+    /**
+     * ViewHolder class to hold the views for each search entry.
+     */
     public static class SearchEntryViewHolder extends RecyclerView.ViewHolder {
         TextView searchTermTextView;
 

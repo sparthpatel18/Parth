@@ -8,23 +8,25 @@ import android.util.Log;
 import android.widget.Button;
 import android.widget.TextView;
 import android.widget.Toast;
-
 import androidx.appcompat.app.AppCompatActivity;
-
 import com.android.volley.Request;
 import com.android.volley.RequestQueue;
 import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.JsonObjectRequest;
 import com.android.volley.toolbox.Volley;
-
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
-
 import algonquin.CST2335.pate1214.DatabaseHelper;
 import algonquin.CST2335.pate1214.R;
 
+/**
+ * Activity to display song details fetched from Deezer API and allow users to save songs.
+ * Author: Parth Patel
+ * Lab Section: 012
+ * Date: 3 April 2024
+ */
 public class SongDetailsActivity extends AppCompatActivity {
 
     private TextView textViewArtistName;
@@ -64,6 +66,10 @@ public class SongDetailsActivity extends AppCompatActivity {
         buttonSave.setOnClickListener(view -> saveSongData(artistName, tracklistUrl));
     }
 
+    /**
+     * Fetches song details from the Deezer API using the provided tracklist URL.
+     * @param tracklistUrl The URL of the artist's tracklist.
+     */
     private void fetchSongDetails(String tracklistUrl) {
         // Make a GET request to the tracklistUrl
         JsonObjectRequest jsonObjectRequest = new JsonObjectRequest(Request.Method.GET, tracklistUrl, null,
@@ -105,6 +111,11 @@ public class SongDetailsActivity extends AppCompatActivity {
         requestQueue.add(jsonObjectRequest);
     }
 
+    /**
+     * Saves the song data (artist name and tracklist URL) to the database.
+     * @param artistName The name of the artist.
+     * @param tracklistUrl The URL of the artist's tracklist.
+     */
     private void saveSongData(String artistName, String tracklistUrl) {
         // Check if the song is already saved
         if (isSongSaved(artistName)) {
@@ -117,6 +128,11 @@ public class SongDetailsActivity extends AppCompatActivity {
         Toast.makeText(this, "Song saved", Toast.LENGTH_SHORT).show();
     }
 
+    /**
+     * Checks if the song with the given artist name is already saved in the database.
+     * @param artistName The name of the artist.
+     * @return True if the song is already saved, false otherwise.
+     */
     private boolean isSongSaved(String artistName) {
         // Check if the song with the given artist name exists in the database
         Cursor cursor = databaseHelper.getAllFavorites();

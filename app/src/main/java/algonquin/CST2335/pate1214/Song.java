@@ -1,24 +1,35 @@
 package algonquin.CST2335.pate1214;
+
 import androidx.room.ColumnInfo;
 import androidx.room.Entity;
 import androidx.room.PrimaryKey;
 
+/**
+ * Entity class representing a song in the database.
+ * Author: Parth Patel
+ * Lab Section: 012
+ * Date: 3 April 2024
+ */
 @Entity(tableName = "songs")
 public class Song {
     @PrimaryKey(autoGenerate = true)
     private int id;
+
     @ColumnInfo(name = "title")
     private String title;
 
     @ColumnInfo(name = "artistName")
     private String artistName;
+
     @ColumnInfo(name = "albumName")
     private String albumName;
+
     @ColumnInfo(name = "durationInSeconds")
     private int durationInSeconds;
 
     @ColumnInfo(name = "coverUrl")
     private String coverUrl;
+
     // Constructor
     public Song(int id, String title, String artistName, String albumName, int durationInSeconds, String coverUrl) {
         this.id = id;
@@ -54,16 +65,24 @@ public class Song {
         return coverUrl;
     }
 
-    public void setTitle(String string) {
+    // Setters
+    public void setTitle(String title) {
+        this.title = title;
     }
 
-    public void setArtist(String string) {
+    public void setArtistName(String artistName) {
+        this.artistName = artistName;
     }
 
-    public void setDuration(String string) {
+    public void setAlbumName(String albumName) {
+        this.albumName = albumName;
     }
 
-    public void setAlbum(String string) {
+    public void setDurationInSeconds(int durationInSeconds) {
+        this.durationInSeconds = durationInSeconds;
+    }
 
+    public void setCoverUrl(String coverUrl) {
+        this.coverUrl = coverUrl;
     }
 }

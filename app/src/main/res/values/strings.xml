@@ -3,5 +3,8 @@
     <string name="hello_message" translatable="false">Hello World!</string>
     <string name="button_message" translatable="false">I am button</string>
     <string name="artistName" translatable="false">I am button</string>
-
+    <string name="search_hint" translatable="false">Enter artist name</string>
+    <string name="search_button_label" translatable="false">Search</string>
+    <string name="clear_button_label" translatable="false">Clear</string>
+    <string name="help_button_label" translatable="false">Help</string>
 </resources>
